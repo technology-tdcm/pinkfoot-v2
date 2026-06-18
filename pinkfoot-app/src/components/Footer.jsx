@@ -13,8 +13,6 @@ import {
   MapPin,
   Plane,
   Globe,
-  Wallet,
-  Sparkles,
   Heart,
 } from "./icons/index.jsx";
 
@@ -40,25 +38,9 @@ const linkCols = [
       { label: "Press",     to: "#" },
     ],
   },
-  {
-    title: "Help",
-    links: [
-      { label: "Booking Policy",   to: "#" },
-      { label: "Cancellation",     to: "#" },
-      { label: "Travel Insurance", to: "#" },
-      { label: "Privacy Policy",   to: "#" },
-      { label: "Terms of Service", to: "#" },
-      { label: "FAQ",              to: "#" },
-    ],
-  },
 ];
 
-const valueProps = [
-  { IconComp: Wallet,   label: "Best Price Guarantee" },
-  { IconComp: Phone,    label: "24/7 Travel Support" },
-  { IconComp: Sparkles, label: "Personalised Itineraries" },
-  { IconComp: Heart,    label: "10,000+ Happy Travellers" },
-];
+
 
 export default function Footer() {
   const { data: destinations } = useDestinations();
@@ -109,7 +91,7 @@ export default function Footer() {
           <div className="grid gap-3 sm:grid-cols-3">
             {[
               { IconComp: Phone,         label: "Call us",   value: "+91 8109030897", href: "tel:+918109030897" },
-              { IconComp: MessageCircle, label: "WhatsApp",  value: "Chat now",        href: "https://wa.me/918109030897" },
+              { IconComp: MessageCircle, label: "WhatsApp",  value: "+91 8109030897",  href: "https://wa.me/918109030897" },
               { IconComp: Mail,          label: "Email",     value: "info@pinkfoottravel.com", href: "mailto:info@pinkfoottravel.com" },
             ].map((c) => (
               <a
@@ -277,21 +259,7 @@ export default function Footer() {
         </div>
       </section>
 
-      {/* ── Trust strip ── */}
-      <section className="relative border-y border-white/10 bg-white/[0.03] py-5">
-        <div className="container-page grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {valueProps.map((v) => (
-            <div key={v.label} className="flex items-center gap-3">
-              <span className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full bg-[var(--color-pink)]/15 text-[var(--color-pink-light)]">
-                <Icon size={17} animateOnHover><v.IconComp /></Icon>
-              </span>
-              <span className="text-[12px] font-semibold leading-tight text-white/85">
-                {v.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* ── Bottom bar ── */}
       <div className="relative">
