@@ -165,14 +165,15 @@ export default function Footer() {
               </div>
               <div className="flex gap-2">
                 {[
-                  { IconComp: FacebookIcon,  label: "Facebook" },
-                  { IconComp: InstagramIcon, label: "Instagram" },
-                  { IconComp: TwitterIcon,   label: "Twitter" },
-                  { IconComp: YoutubeIcon,   label: "YouTube" },
+                  { IconComp: FacebookIcon,  label: "Facebook", href: "https://www.facebook.com/share/14gbkCKE19W/" },
+                  { IconComp: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/pinkfoottravel?igsh=cDdwM2d2dmdnMzB5" },
+                  { IconComp: TwitterIcon,   label: "Twitter", href: "#" },
+                  { IconComp: YoutubeIcon,   label: "YouTube", href: "#" },
                 ].map((s) => (
                   <a
                     key={s.label}
-                    href="#"
+                    href={s.href}
+                    {...(s.href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     aria-label={s.label}
                     className="grid h-10 w-10 place-items-center rounded-xl bg-white/[0.08] text-white/80 transition hover:-translate-y-0.5 hover:bg-[var(--color-pink)] hover:text-white"
                   >
@@ -272,10 +273,10 @@ export default function Footer() {
             in India
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <Link to="#" className="transition hover:text-white/85">Privacy</Link>
-            <Link to="#" className="transition hover:text-white/85">Terms</Link>
-            <Link to="#" className="transition hover:text-white/85">Cookies</Link>
-            <Link to="#" className="transition hover:text-white/85">Sitemap</Link>
+            <Link to="/privacy" className="transition hover:text-white/85">Privacy</Link>
+            <Link to="/terms" className="transition hover:text-white/85">Terms</Link>
+            <Link to="/cookies" className="transition hover:text-white/85">Cookies</Link>
+            <Link to="/sitemap" className="transition hover:text-white/85">Sitemap</Link>
             <span className="text-white/25">·</span>
             <span className="inline-flex items-center gap-1.5">
               <Icon size={11}><Globe /></Icon> EN · INR

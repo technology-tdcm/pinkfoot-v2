@@ -11,6 +11,10 @@ import DestinationsIndexPage from "./pages/DestinationsIndexPage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import PrivacyPage from "./pages/PrivacyPage.jsx";
+import TermsPage from "./pages/TermsPage.jsx";
+import CookiesPage from "./pages/CookiesPage.jsx";
+import SitemapPage from "./pages/SitemapPage.jsx";
 
 import AdminLayout from "./pages/admin/AdminLayout.jsx";
 import AdminLoginPage from "./pages/admin/AdminLoginPage.jsx";
@@ -36,6 +40,10 @@ export default function App() {
           <Route path="/destinations/:slug" element={<DestinationPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/cookies" element={<CookiesPage />} />
+          <Route path="/sitemap" element={<SitemapPage />} />
 
           {/* ADMIN */}
           <Route path="/admin/login" element={<AdminLoginPage />} />
