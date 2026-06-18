@@ -618,52 +618,7 @@ function Testimonials({ reviews }) {
   );
 }
 
-function Newsletter() {
-  return (
-    <section
-      className="relative overflow-hidden py-20 text-center"
-      style={{
-        background:
-          "linear-gradient(135deg, #E85478 0%, #C2395D 60%, #1B2A4A 130%)",
-      }}
-    >
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute -left-10 top-0 h-40 w-40 rounded-full bg-white/30 blur-3xl" />
-        <div className="absolute -right-10 bottom-0 h-40 w-40 rounded-full bg-white/30 blur-3xl" />
-      </div>
-      <div className="container-page relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-2xl"
-        >
-          <h2 className="font-display text-[clamp(28px,4vw,40px)] font-bold text-white">
-            Get Exclusive Travel Deals
-          </h2>
-          <p className="mt-3 text-white/85">
-            Join 50,000+ travellers who get our best offers first. No spam, just great deals.
-          </p>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="mx-auto mt-7 flex max-w-md flex-col gap-2 sm:flex-row"
-          >
-            <input
-              type="email"
-              required
-              placeholder="Enter your email"
-              className="flex-1 rounded-full bg-white px-5 py-3 text-sm outline-none"
-            />
-            <button type="submit" className="btn-navy whitespace-nowrap">
-              Subscribe
-            </button>
-          </form>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
+
 
 export default function HomePage() {
   const { data: destinations } = useDestinations();
@@ -680,7 +635,6 @@ export default function HomePage() {
       <TrendingPackages packages={pList} />
       <WhyPinkfoot />
       <Testimonials reviews={rList} />
-      <Newsletter />
     </main>
   );
 }
