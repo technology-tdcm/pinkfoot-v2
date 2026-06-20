@@ -7,7 +7,7 @@ export default function AdminLoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState("admin@pinkfoot.local");
+  const [email, setEmail] = useState("info@pinkfoottravel.com");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState(false);
@@ -83,7 +83,7 @@ export default function AdminLoginPage() {
         </button>
 
         <p className="mt-4 text-center text-[11px] text-gray-400">
-          Default local creds: <code>admin@pinkfoot.local</code> / <code>pinkfoot-admin</code>
+          Default local creds: <code>info@pinkfoottravel.com</code> / <code>Admin@Pinkfoot123</code>
         </p>
       </form>
     </main>

@@ -5,8 +5,8 @@ const router = Router();
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body || {};
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@pinkfoot.local";
-  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "pinkfoot-admin";
+  const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "info@pinkfoottravel.com";
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Admin@Pinkfoot123";
   if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
     return res.status(401).json({ error: "Invalid credentials" });
   }

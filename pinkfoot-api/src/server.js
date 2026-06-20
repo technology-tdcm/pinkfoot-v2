@@ -60,5 +60,5 @@ app.use((err, _req, res, _next) => {
 
 app.listen(PORT, () => {
   console.log(`✓ Pinkfoot API running at http://localhost:${PORT}`);
-  console.log(`  Admin login: ${process.env.ADMIN_EMAIL || "admin@pinkfoot.local"} / ${process.env.ADMIN_PASSWORD || "pinkfoot-admin"}`);
+  console.log(`  Admin login: ${process.env.ADMIN_EMAIL || "info@pinkfoottravel.com"} / ${process.env.ADMIN_PASSWORD || "Admin@Pinkfoot123"}`);
 });
