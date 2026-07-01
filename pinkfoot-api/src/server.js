@@ -13,8 +13,6 @@ import auth from "./routes/auth.js";
 import uploads from "./routes/uploads.js";
 import stays from "./routes/stays.js";
 import policies from "./routes/policies.js";
-import db from "./db.js";
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -62,17 +60,4 @@ app.use((err, _req, res, _next) => {
 app.listen(PORT, () => {
   console.log(`✓ Pinkfoot API running at http://localhost:${PORT}`);
   console.log(`  Admin login: ${process.env.ADMIN_EMAIL || "info@pinkfoottravel.com"} / ${process.env.ADMIN_PASSWORD || "Admin@Pinkfoot123"}`);
-  
-  // Auto-seed if database is empty to prevent blank stats in admin panel
-  try {
-    const row = db.prepare("SELECT COUNT(*) as count FROM destinations").get();
-    if (!row || row.count === 0) {
-      console.log("  Database is empty. Auto-seeding from static files...");
-      import("./seed.js")
-        .then(() => console.log("  ✓ Database auto-seeded successfully!"))
-        .catch((err) => console.error("  ✗ Error auto-seeding database:", err));
-    }
-  } catch (e) {
-    console.error("  ✗ Auto-seed check failed:", e);
-  }
 });
