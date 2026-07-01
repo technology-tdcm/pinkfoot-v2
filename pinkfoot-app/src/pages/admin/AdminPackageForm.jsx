@@ -916,17 +916,23 @@ export default function AdminPackageForm() {
                   placeholder="Day title"
                   className="input"
                 />
-                <textarea
-                  rows={2}
-                  value={d.description}
-                  onChange={(e) => {
-                    const next = [...form.itinerary];
-                    next[i] = { ...next[i], description: e.target.value };
-                    update("itinerary", next);
-                  }}
-                  placeholder="Day description"
-                  className="input"
-                />
+                <label className="block">
+                  <span className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-gray-600">Day Description (HTML/Emojis allowed)</span>
+                  <textarea
+                    rows={4}
+                    value={d.description}
+                    onChange={(e) => {
+                      const next = [...form.itinerary];
+                      next[i] = { ...next[i], description: e.target.value };
+                      update("itinerary", next);
+                    }}
+                    placeholder="e.g. <p>Explore the stunning beaches...</p> 😊"
+                    className="input"
+                  />
+                  <div className="mt-1 text-[10px] text-gray-500 leading-normal">
+                    HTML allowed (e.g., &lt;p&gt; or &lt;br/&gt; for paragraph spacing and text styling). Emojis are supported.
+                  </div>
+                </label>
                 <div className="grid gap-3 sm:grid-cols-3">
                   <label className="block">
                     <span className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-gray-600">Location</span>
