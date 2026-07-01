@@ -3,6 +3,7 @@ import { api } from "../../lib/api.js";
 import ImageUpload from "../../components/ImageUpload.jsx";
 import ChipInput from "../../components/ChipInput.jsx";
 import HighlightEditor, { normalizeHighlight } from "../../components/HighlightEditor.jsx";
+import RichTextEditor from "../../components/RichTextEditor.jsx";
 
 const EMPTY = {
   name: "", country: "", region: "", tagline: "", description: "",
@@ -132,11 +133,10 @@ export default function AdminDestinationsPage() {
             </div>
             <label className="mt-3 block">
               <span className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-gray-600">Description</span>
-              <textarea
+              <RichTextEditor
                 value={form.description}
-                onChange={(e) => setForm({ ...form, description: e.target.value })}
-                rows={3}
-                className="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-[var(--color-pink)]"
+                onChange={(val) => setForm({ ...form, description: val })}
+                placeholder="Describe the destination..."
               />
             </label>
             <div className="mt-3">

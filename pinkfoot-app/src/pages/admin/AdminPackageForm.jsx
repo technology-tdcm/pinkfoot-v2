@@ -477,16 +477,14 @@ export default function AdminPackageForm() {
       </Card>
 
       <Card title="Long description">
-        <Field label="Description (HTML allowed)">
-          <textarea
+        <Field label="Description">
+          <RichTextEditor
             value={form.description}
-            onChange={(e) => update("description", e.target.value)}
-            rows={6}
-            className="input"
-            placeholder="<p>Embark on a magnificent 7-day journey…</p>"
+            onChange={(val) => update("description", val)}
+            placeholder="Embark on a magnificent journey…"
           />
           <div className="mt-1 text-[11px] text-gray-500">
-            Plain text works too. Renders above the tabs on the product page.
+            Renders above the tabs on the product page.
           </div>
         </Field>
         <ChipList

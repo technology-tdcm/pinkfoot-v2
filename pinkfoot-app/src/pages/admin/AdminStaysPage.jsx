@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../lib/api.js";
 import ImageUpload from "../../components/ImageUpload.jsx";
 import { Icon, Search, Bed, MapPin, Phone, Mail, Check, XCircle } from "../../components/icons/index.jsx";
+import RichTextEditor from "../../components/RichTextEditor.jsx";
 
 const PROPERTY_TYPES = [
   "Hotel",
@@ -422,12 +423,10 @@ export default function AdminStaysPage() {
             <span className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-gray-600">
               Description
             </span>
-            <textarea
-              rows={4}
+            <RichTextEditor
               value={form.description}
-              onChange={(e) => updateField("description", e.target.value)}
+              onChange={(val) => updateField("description", val)}
               placeholder="Short description of the property highlights, room tiers, views..."
-              className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2.5 text-xs outline-none focus:border-[var(--color-pink)]"
             />
           </label>
 

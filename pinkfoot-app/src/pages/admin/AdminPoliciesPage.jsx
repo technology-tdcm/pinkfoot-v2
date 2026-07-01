@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../../lib/api.js";
 import { Icon, Search, Shield, Check, XCircle } from "../../components/icons/index.jsx";
+import RichTextEditor from "../../components/RichTextEditor.jsx";
 
 const EMPTY_POLICY = {
   name: "",
@@ -148,13 +149,10 @@ export default function AdminPoliciesPage() {
             <span className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-gray-600">
               Terms & Conditions <span className="text-[var(--color-pink)]">*</span>
             </span>
-            <textarea
-              required
-              rows={5}
+            <RichTextEditor
               value={form.terms}
-              onChange={(e) => updateField("terms", e.target.value)}
+              onChange={(val) => updateField("terms", val)}
               placeholder="e.g., 30% payment at the time of booking, free cancellation up to 30 days before departure..."
-              className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2.5 text-xs outline-none focus:border-[var(--color-pink)]"
             />
           </label>
 
@@ -195,8 +193,11 @@ export default function AdminPoliciesPage() {
                 filtered.map((p) => (
                   <tr key={p.id} className="hover:bg-gray-50/50">
                     <td className="px-6 py-4 font-bold text-gray-900">{p.name}</td>
-                    <td className="px-6 py-4 text-xs leading-relaxed text-gray-600 whitespace-pre-line">
-                      {p.terms}
+                    <td className="px-6 py-4 text-xs leading-relaxed text-gray-600 max-w-sm">
+                      <div
+                        className="line-clamp-3 prose prose-xs max-w-none [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:list-decimal [&_ol]:pl-4"
+                        dangerouslySetInnerHTML={{ __html: p.terms || "" }}
+                      />
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-3 text-xs font-bold">

@@ -9,6 +9,7 @@ import PriceTag from "../components/PriceTag.jsx";
 import PackageCard from "../components/PackageCard.jsx";
 import Carousel from "../components/Carousel.jsx";
 import DatePicker from "../components/DatePicker.jsx";
+import PolicyModal from "../components/PolicyModal.jsx";
 import {
   Icon,
   MapPin,
@@ -165,6 +166,7 @@ export default function ProductPage() {
   const [mobileSheet, setMobileSheet] = useState(false);
   const [stayCategory, setStayCategory] = useState("standard");
   const [expandedDays, setExpandedDays] = useState({ 1: true });
+  const [policyModal, setPolicyModal] = useState(false);
 
   const toggleDay = (d) => {
     setExpandedDays((prev) => ({
@@ -302,6 +304,7 @@ export default function ProductPage() {
   };
 
   return (
+    <>
     <main className="bg-[var(--color-off-white)] pt-[72px]">
       {/* HERO with breadcrumb */}
       <section className="relative h-[420px] overflow-hidden">
@@ -612,9 +615,10 @@ export default function ProductPage() {
                             {policy.name}
                           </div>
                         )}
-                        <p className="mt-3 whitespace-pre-line leading-relaxed text-gray-700 text-sm">
-                          {policy.terms}
-                        </p>
+                        <div
+                          className="mt-3 prose prose-sm max-w-none leading-relaxed text-gray-700 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mt-1.5 [&_p:first-child]:mt-0 whitespace-pre-line"
+                          dangerouslySetInnerHTML={{ __html: policy.terms || "" }}
+                        />
                       </div>
                     ))}
                   </div>
@@ -625,9 +629,10 @@ export default function ProductPage() {
                         {pkg.paymentPolicy.name}
                       </div>
                     )}
-                    <p className="mt-4 whitespace-pre-line leading-relaxed text-gray-700 text-sm">
-                      {pkg.paymentPolicy.terms}
-                    </p>
+                    <div
+                      className="mt-4 prose prose-sm max-w-none leading-relaxed text-gray-700 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mt-1.5 [&_p:first-child]:mt-0 whitespace-pre-line"
+                      dangerouslySetInnerHTML={{ __html: pkg.paymentPolicy.terms || "" }}
+                    />
                   </>
                 ) : (
                   <p className="mt-3 text-sm text-gray-500">
@@ -760,7 +765,7 @@ export default function ProductPage() {
               children={children} setChildren={setChildren}
               total={total}
               onSendEnquiry={() => document.getElementById("enquiry-form")?.scrollIntoView({ behavior: "smooth" })}
-              onShowPolicy={() => setTab("Policy")}
+              onShowPolicy={() => setPolicyModal(true)}
               stayCategory={stayCategory} setStayCategory={setStayCategory}
               priceAdult={priceAdult}
               priceChild={priceChild}
@@ -841,7 +846,7 @@ export default function ProductPage() {
                     document.getElementById("enquiry-form")?.scrollIntoView({ behavior: "smooth" });
                   }, 200);
                 }}
-                onShowPolicy={() => { setMobileSheet(false); setTab("Policy"); }}
+                onShowPolicy={() => { setMobileSheet(false); setPolicyModal(true); }}
                 stayCategory={stayCategory} setStayCategory={setStayCategory}
                 priceAdult={priceAdult}
                 priceChild={priceChild}
@@ -946,6 +951,20 @@ export default function ProductPage() {
         </div>
       </section>
     </main>
+
+    {policyModal && pkg && (
+      <PolicyModal
+        policies={
+          pkg.paymentPolicies?.length
+            ? pkg.paymentPolicies
+            : pkg.paymentPolicy
+            ? [pkg.paymentPolicy]
+            : []
+        }
+        onClose={() => setPolicyModal(false)}
+      />
+    )}
+    </>
   );
 }
 
@@ -1044,11 +1063,14 @@ function BookingBody({
               <div className="inline-flex items-center gap-1.5 font-bold uppercase tracking-wider text-[var(--color-pink)]">
                 <Icon size={12}><Wallet /></Icon> {policy.name || "Payment plan"}
               </div>
+              <p className="mt-1 line-clamp-2 text-gray-600">
+                {policy.terms.replace(/<[^>]+>/g, "")}
+              </p>
               <button
                 onClick={onShowPolicy}
-                className="mt-1 line-clamp-2 text-left text-gray-600 hover:text-[var(--color-navy)] w-full block"
+                className="mt-1 text-[var(--color-pink)] font-bold hover:underline"
               >
-                {policy.terms}
+                Read full policy →
               </button>
             </div>
           ))}
@@ -1058,11 +1080,14 @@ function BookingBody({
           <div className="inline-flex items-center gap-1.5 font-bold uppercase tracking-wider text-[var(--color-pink)]">
             <Icon size={12}><Wallet /></Icon> {pkg.paymentPolicy.name || "Payment plan"}
           </div>
+          <p className="mt-1 line-clamp-2 text-gray-600">
+            {pkg.paymentPolicy.terms.replace(/<[^>]+>/g, "")}
+          </p>
           <button
             onClick={onShowPolicy}
-            className="mt-1 line-clamp-2 text-left text-gray-600 hover:text-[var(--color-navy)] w-full block"
+            className="mt-1 text-[var(--color-pink)] font-bold hover:underline"
           >
-            {pkg.paymentPolicy.terms}
+            Read full policy →
           </button>
         </div>
       ) : null}
